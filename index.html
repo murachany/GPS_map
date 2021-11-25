@@ -32,7 +32,7 @@
             controller.enqueue(this.chunks);
           }
       }
-
+/*
       const ctx = document.getElementById("myChart").getContext("2d");
 
       let chart = new Chart(ctx, {
@@ -72,6 +72,7 @@
           },
         },
       });
+      */
 
       async function onStartButtonClick() {
         try {
@@ -94,6 +95,7 @@
                 }
                 console.log(value);
 
+                /*
                 if(value.slice(0,1)==="X") {
                   chart.data.datasets[0].data.push({
                     x: Date.now(),
@@ -113,6 +115,7 @@
                 chart.update({
                   preservation: true,
                 });
+                */
               }
             } catch (error) {
               console.log("Error: Read");
