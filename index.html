@@ -20,6 +20,14 @@
 	
 <script>"use strict"
 	
+window.onload = function() {
+	var map = initMap('mapid')
+	map.setZoom(16)
+	map.panTo([ 34.7248479,137.7176576 ])//浜松
+	//map.addIcon(34.7248479,137.7176576,"SE機体","icon/mappin.png",64)
+	//map.panTo([ 35.943560,136.188917 ]) // 鯖江駅
+}
+	
 /////////	
 class LineBreakTransformer {
           constructor() {
@@ -78,13 +86,7 @@ class LineBreakTransformer {
       }
 ////////
 	
-window.onload = function() {
-	var map = initMap('mapid')
-	map.setZoom(16)
-	map.panTo([ 34.7248479,137.7176576 ])//浜松
-	map.addIcon(34.7248479,137.7176576,"SE機体","icon/mappin.png",64)
-	//map.panTo([ 35.943560,136.188917 ]) // 鯖江駅
-}
+
 
 </script>
 <style>
