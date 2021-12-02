@@ -41,7 +41,6 @@ class LineBreakTransformer {
           }
       }
 
-      const ctx = document.getElementById("myChart").getContext("2d");
       async function onStartButtonClick() {
         try {
           const port = await navigator.serial.requestPort();
@@ -62,10 +61,7 @@ class LineBreakTransformer {
                   break;
                 }
                 console.log(value);
-		
-                chart.update({
-                  preservation: true,
-                });
+                
               }
             } catch (error) {
               console.log("Error: Read");
