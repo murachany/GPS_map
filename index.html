@@ -66,6 +66,13 @@ class LineBreakTransformer {
                 }
                 console.log(value);
                 
+		if(value.slice(0,1)==="N") {
+                  N=value.slice(2);
+                } else if(value.slice(0,1)==="E") {
+                  E=value.slice(2);
+                } 
+		      
+		      
               }
             } catch (error) {
               console.log("Error: Read");
