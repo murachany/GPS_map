@@ -17,9 +17,10 @@
 	
 let N=34.7248479;
 let E=137.7176576;
+var map;
 	
 window.onload = function() {
-	var map = initMap('mapid')
+	map = initMap('mapid')
 	map.setZoom(16)
 	map.panTo([ N,E ])//浜松
 	//map.panTo([ 34.7248,137.7176 ])//浜松
@@ -72,7 +73,9 @@ class LineBreakTransformer {
                   E=value.slice(2);
                 } 
 		
-		
+		if(isNan(N)&&isNan(E)){
+		map.panTo([ N,E ])//浜松
+		}
 		
 			
 		      
