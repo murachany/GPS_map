@@ -19,6 +19,7 @@ let N=34.7248479;
 let E=137.7176576;
 var map;
 let i=0;
+let prei=0;
 	
 window.onload = function() {
 	map = initMap('mapid')
@@ -74,7 +75,7 @@ class LineBreakTransformer {
                 } else if(value.slice(0,1)==="E") {
 			E=value.slice(2);
 		  	//console.log(E);
-			let prei=i;
+			prei=i;
 			i++;
                 } 
 		
