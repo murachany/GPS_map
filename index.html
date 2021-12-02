@@ -69,15 +69,17 @@ class LineBreakTransformer {
                 
 		if(value.slice(0,1)==="N") {
                   N=value.slice(2);
+			console.log(N);
                 } else if(value.slice(0,1)==="E") {
                   E=value.slice(2);
+			console.log(E);
                 } 
 		
 		//数値チェック
 		if(isFinite(N)&&isFinite(E)){
 		map.panTo([ N,E ])//浜松
 		}
-		
+		*/
 			
 		      
               }
