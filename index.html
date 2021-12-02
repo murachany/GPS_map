@@ -73,7 +73,8 @@ class LineBreakTransformer {
                   E=value.slice(2);
                 } 
 		
-		if(isNaN(N)&&isNaN(E)){
+		//数値チェック
+		if(isFinite(N)&&isFinite(E)){
 		map.panTo([ N,E ])//浜松
 		}
 		
