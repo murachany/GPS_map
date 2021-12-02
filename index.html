@@ -18,6 +18,7 @@
 let N=34.7248479;
 let E=137.7176576;
 var map;
+let i=0;
 	
 window.onload = function() {
 	map = initMap('mapid')
@@ -68,15 +69,17 @@ class LineBreakTransformer {
                 console.log(value);
                 
 		if(value.slice(0,1)==="N") {
-                  N=value.slice(2);
-		  //console.log(N);
+			N=value.slice(2);
+		  	//console.log(N);
                 } else if(value.slice(0,1)==="E") {
-                  E=value.slice(2);
-		  //console.log(E);
+			E=value.slice(2);
+		  	//console.log(E);
+			let prei=i;
+			i++;
                 } 
 		
 		//数値チェック
-		if(isFinite(N)&&isFinite(E)){
+		if(isFinite(N) && isFinite(E) && i!=prei){
 		map.panTo([ N,E ])//浜松
 		console.log("map update...");
 		}
