@@ -12,12 +12,77 @@
 <script src="https://fukuno.jig.jp/fukuno.js"></script>
 <script src="https://code4fukui.github.io/egmapjs/sparql.js"></script>
 
+///////
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@1.8.0/dist/chartjs-plugin-streaming.min.js"></script>
+////
+	
 <script>"use strict"
+	
+/////////	
+class LineBreakTransformer {
+          constructor() {
+            this.chunks = "";
+          }
+
+          transform(chunk, controller) {
+            this.chunks += chunk;
+            const lines = this.chunks.split("\r\n");
+            this.chunks = lines.pop();
+            lines.forEach((line) => controller.enqueue(line));
+          }
+
+          flush(controller) {
+            controller.enqueue(this.chunks);
+          }
+      }
+
+      const ctx = document.getElementById("myChart").getContext("2d");
+      async function onStartButtonClick() {
+        try {
+          const port = await navigator.serial.requestPort();
+          await port.open({ baudRate: 9600 });
+
+          while (port.readable) {
+            const textDecoder = new TextDecoderStream();
+            const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+            const reader = textDecoder.readable
+            .pipeThrough(new TransformStream(new LineBreakTransformer()))
+            .getReader();
+
+            try {
+              while (true) {
+                const { value, done } = await reader.read();
+                if (done) {
+                  console.log("Canceled");
+                  break;
+                }
+                console.log(value);
+		
+                chart.update({
+                  preservation: true,
+                });
+              }
+            } catch (error) {
+              console.log("Error: Read");
+              console.log(error);
+            } finally {
+              reader.releaseLock();
+            }
+          }
+        } catch (error) {
+          console.log("Error: Open");
+          console.log(error);
+        }
+      }
+////////
+	
 window.onload = function() {
 	var map = initMap('mapid')
 	map.setZoom(16)
 	map.panTo([ 34.7248479,137.7176576 ])//浜松
-	map.addIcon(34.7248479,137.7176576,"SE機体","icon/hanadojo.png",64)
+	map.addIcon(34.7248479,137.7176576,"SE機体","icon/map_pin.jpeg",64)
 	//map.panTo([ 35.943560,136.188917 ]) // 鯖江駅
 }
 
@@ -31,6 +96,7 @@ h1 { font-size: 5vw; margin: 0; }
 </style></head><body>
 
 <h1>マップアプリ1</h1>
+<button onclick="onStartButtonClick()">接続</button>
 <div id="mapid"></div>
 
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
