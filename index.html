@@ -23,8 +23,9 @@ let prei=0;
 	
 window.onload = function() {
 	map = initMap('mapid')
-	map.setZoom(4)
+	map.setZoom(8)
 	map.panTo([ N,E ])//浜松
+	let current = map.addIcon(30,E,"機体","icon/mappin.png",)
 	//map.panTo([ 34.7248,137.7176 ])//浜松
 	//map.addIcon(34.7248479,137.7176576,"SE機体","icon/mappin.png",64)
 	//map.panTo([ 35.943560,136.188917 ]) // 鯖江駅
@@ -83,7 +84,6 @@ class LineBreakTransformer {
 		if(isFinite(N) && isFinite(E) && i!=prei){
 			
 		//マップのリロード
-		let current = map.addIcon(N,E,"SE機体","icon/mappin.png",64)
 		const pos = [ N, E ]
 		current.setLatLng(pos)
 		//map.panTo(pos)
