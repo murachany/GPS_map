@@ -20,12 +20,13 @@ let E=137.7176576;
 var map;
 let i=0;
 let prei=0;
+let current;
 	
 window.onload = function() {
 	map = initMap('mapid')
 	map.setZoom(8)
 	map.panTo([ N,E ])//浜松
-	let current = map.addIcon(30,E,"機体","icon/mappin.png",)
+	current = map.addIcon(32,E,"機体","icon/mappin.png",)
 	//map.panTo([ 34.7248,137.7176 ])//浜松
 	//map.addIcon(34.7248479,137.7176576,"SE機体","icon/mappin.png",64)
 	//map.panTo([ 35.943560,136.188917 ]) // 鯖江駅
