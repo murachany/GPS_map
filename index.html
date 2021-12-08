@@ -81,9 +81,14 @@ class LineBreakTransformer {
 		
 		//数値チェック
 		if(isFinite(N) && isFinite(E) && i!=prei){
-		//map.panTo([ N,E ])//浜松
-		map.addIcon(N,E,"SE機体","icon/mappin.png",64)
-		console.log("map update...");
+			
+		//マップのリロード
+		let current = map.addIcon(N,E,"SE機体","icon/mappin.png",64)
+		const pos = [ N, E ]
+		current.setLatLng(pos)
+		//map.panTo(pos)
+			
+		console.log("map reload...");
 		}
 		
 			
